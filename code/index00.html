@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue練習</title>
+</head>
+<body>
+<div id="app">
+    <!-- vue 介紹 -->
+    <!-- {{text}}  <br>
+    {{text2}} <br>
+    {{text3}} -->
+
+    <!-- ref 和 reactive 分類測試 -->
+    <!-- <p>{{ person1 }}</p>
+    <p>{{ person2 }}</p> -->
+
+    <!-- v-model測試 -->
+    <h1>{{ person1 }}</h1>
+    <input type="text" v-model="person1">
+    <br>
+    <h1>{{ person2.name }}</h1>
+    <input type="text" v-model="person2.name">
+    <br>
+    <div v-text="text_html"></div>
+    <div v-html="text_html"></div>
+    <img v-bind:src="imgSrc" v-bind:alt="imgAlt">
+    
+</div>   
+
+    
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- <script src="../js/vue.global.js"></script> -->
+
+<script>
+
+    // ref 和 reactive 分類測試
+    // const { ref } =Vue;
+    // const { reactive }=Vue; //只可放物件或陣列
+
+    const { ref,reactive }=Vue;//一起宣告
+    //reactive 是響應式物件，他可以跟網頁有變動可以換值，只收物件跟陣列
+    //ref 不可以 但它可以接受很多數值
+
+
+  const Apptest={
+    data() {
+         // ref 和 reactive 分類測試
+    //     const text=ref("hello!!");
+    //     const text2=ref("world!!");
+    //     const text3=ref("Vue!!");
+        
+    //     setTimeout(() => {
+    //   text.value = "vue!!";
+    //   text2.value = "vue!!";
+    //   text3.value = "vue!!";
+    // }, 1000);
+
+
+
+        // ref 和 reactive 分類測試
+        // const person1=reactive({name:"Jack",city:"台中市"}); //放物件
+        // //  const person=(["Tom","Vite","React"]); //放陣列
+        // const person2=ref({name:"Jack",city:"台中市"});
+
+
+        // v-model測試
+        // const person1=ref("Hello!!");
+        // const person2=reactive({name:"Tom"});
+
+        return {
+        //    person1,
+        //    person2,
+           text_html:"<h2>中彰投分屬</h2>",
+           imgSrc:"HTML5.png",
+           imgAlt:"Html5",
+        }
+    },
+  };
+Vue.createApp(Apptest).mount("#app");//vue2 寫法
+
+
+// vue 介紹
+// const App=Vue.createApp({
+//     data() {
+//         return {
+            
+//         }
+//     },
+// });
+// App.mount('#app');//vue3+2 寫法
+
+
+
+</script>
+</body>
+</html>

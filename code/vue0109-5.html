@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue練習 表單練習checkbox</title>
+   
+</head>
+<body>
+<div id="app">
+    <div class="form-check">
+        <input type="checkbox" v-model="checkboxM">
+        要吃麥當勞嗎?
+    </div>
+   
+    <div class="from-checkGroup" v-if="checkboxM">
+         <hr>
+        <div class="form-check">
+            <input type="checkbox" value="可樂" v-model="checkboxM_array">可樂
+        </div>
+        <div class="form-check">
+            <input type="checkbox" value="漢堡" v-model="checkboxM_array">漢堡
+        </div>
+        <div class="form-check">
+            <input type="checkbox" value="薯條" v-model="checkboxM_array">薯條
+        </div>
+        <div class="form-select">
+            請選擇飲料甜度
+            <select name="" id="" v-model="selectSugar">
+                <!-- <option selected disabled>請選擇飲料甜度</option> -->
+                <option value="全糖">全糖</option>
+                <option value="半糖">半糖</option>
+                <option value="無糖">無糖</option>
+            </select>
+        </div>
+        <div class="form-raido">
+            <input type="radio" value="刷卡" v-model="radioPay">刷卡
+        </div>
+        <div class="form-raido">
+            <input type="radio" value="現金" v-model="radioPay">現金
+        </div>
+        <div class="form-raido">
+            <input type="radio" value="線上支付" v-model="radioPay">線上支付
+        </div>
+        <hr>
+            <h2>你訂購的餐點</h2>
+            <ul>
+                <li v-for="item in checkboxM_array">
+                    {{item}}
+                </li>
+            </ul>
+            <h3>飲料甜度:{{ selectSugar }}</h3>
+            <h3>付款方式:{{ radioPay }}</h3>
+            
+    </div>
+    
+    
+</div>   
+
+    
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+<script>
+      const { ref,reactive,readonly,computed }=Vue;
+
+
+  const Apptest={
+    data() {
+       
+        return {
+          checkboxM:false,
+          checkboxM_array:[],
+          radioPay:"現金",
+          selectSugar:"請選擇飲料甜度"
+        }
+    },
+  };
+Vue.createApp(Apptest).mount("#app");//vue2 寫法
+
+
+
+
+
+</script>
+</body>
+</html>

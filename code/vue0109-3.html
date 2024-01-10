@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue練習 v-if v-show </title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <h1 v-if="isShow">{{ Text }}</h1>
+    <!-- v-if 在前端網頁特性 會完全消失 -->
+    <h1 v-show="isShow">{{ Text }}</h1>
+    <!-- v-show 在前端網頁特性 會以display none 藏起來-->
+    <button @click="Show">顯示&隱藏</button>
+  </ul>
+</div>   
+
+    
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+<script>
+      const { ref,reactive,readonly }=Vue;
+
+
+  const Apptest={
+    data() {
+       const isShow=ref(false);
+       const Text=ref("Hello,Vue");
+        
+        const Show=()=>{
+            isShow.value=!isShow.value;
+        }
+        return {
+            isShow,Text,Show
+         
+        }
+    },
+  };
+Vue.createApp(Apptest).mount("#app");//vue2 寫法
+
+
+
+
+
+</script>
+</body>
+</html>

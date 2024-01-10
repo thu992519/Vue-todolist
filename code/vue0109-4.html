@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue練習 v-for v-show</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        #app{
+            width: 300px;
+            border: 1px sold darkblue;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .title{
+            background-color: darkblue;
+            color:white;
+            display: flex;
+            /* width: 20vw; */
+            height: 5vh;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+        }
+        .box{
+            display: block;
+            width: 100%;
+            height: 0;
+            background-color: skyblue;
+            transition: height 0.5s;;
+            
+        }
+        /* .box.open{
+            height: 25vh;
+        } */
+
+        .box li{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 5vh;
+            border: 1px solid black;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <a class="title" @click="openClass">學生名單
+    </a>
+   <ul class="box" v-bind:style="{ height:domH }" >
+    <!-- v-bind:class="{open: isOpen}" 這原本在box 後面 是CSS的用法 配合上面的open class -->
+    <li v-for="(item,index) in list" v-bind:key="item.name">
+        {{index+1}}.{{item.name}}
+    </li>
+   </ul>
+</div>   
+
+    
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+<script>
+      const { ref,reactive,readonly,computed }=Vue;
+
+
+  const Apptest={
+    data() {
+        const isOpen=ref(true);
+
+        const list =reactive([
+            {name:'Thor',show:true},
+            {name:'Tom',show:true},
+            {name:'David',show:true},
+            {name:'Lily',show:true},
+            {name:'Gavin',show:true},
+            {name:'Thor',show:true},
+            {name:'Tom',show:true},
+            {name:'David',show:true},
+            {name:'Lily',show:true},
+            {name:'Gavin',show:true},
+           
+        ]);
+        const openClass=()=>{
+            isOpen.value=!isOpen.value;
+        }
+        const domH=computed(()=>{
+            if(isOpen.value){
+            //  return   list.length*5+"vh"; vue 大家不會這樣寫 可以用 用其他變數寫
+            return `${list.length*5}vh`;
+            }
+            return 0;
+        });
+        return {
+          list,isOpen,openClass,domH
+        }
+    },
+  };
+Vue.createApp(Apptest).mount("#app");//vue2 寫法
+
+
+
+
+
+</script>
+</body>
+</html>

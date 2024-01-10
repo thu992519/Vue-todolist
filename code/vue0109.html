@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue練習</title>
+</head>
+<body>
+<div id="app">
+  <h1>{{ Num }}</h1>
+    <button v-on:click="Add">Add</button>
+    <button @click="Remove">Remove</button>
+    <!-- @ v-on 的縮寫 : v-bind的縮寫 -->
+    <button @click="Read">Add2</button>
+</div>   
+
+    
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- <script src="../js/vue.global.js"></script> -->
+
+<script>
+      const { ref,reactive,readonly }=Vue;
+
+
+  const Apptest={
+    data() {
+        const Num=ref(0);
+        const Add2=readonly(Num);
+        
+        const Add=()=>{
+            Num.value++;
+        };
+        
+        const Remove=()=>{
+            Num.value--;
+        };
+
+        const Read=()=>{
+            Add2.value++;
+
+            console.log(Num,Add2);
+        }
+
+        return {
+           Num,Add,Remove,Read
+        }
+    },
+  };
+Vue.createApp(Apptest).mount("#app");//vue2 寫法
+
+
+
+
+
+</script>
+</body>
+</html>

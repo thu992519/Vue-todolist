@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue練習 v-for v-show</title>
+</head>
+<body>
+<div id="app">
+    <!-- -v-for 一定加key key 唯一值 但不可以用index -->
+    <ul>
+        <li v-for="(item,index) in list" v-show="item.show" v-bind:key="item.name">{{ index+1 }}. {{ item.name }}</li>
+    </ul>
+</div>   
+
+    
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+<script>
+      const { ref,reactive,readonly }=Vue;
+
+
+  const Apptest={
+    data() {
+        const list =reactive([
+            {name:'Thor',show:true},
+            {name:'Tom',show:true},
+            {name:'David',show:true},
+            {name:'Lily',show:true},
+            {name:'Gavin',show:true},
+            {name:'Jack',show:false},
+        ]);
+
+        return {
+          list
+        }
+    },
+  };
+Vue.createApp(Apptest).mount("#app");//vue2 寫法
+
+
+
+
+
+</script>
+</body>
+</html>
